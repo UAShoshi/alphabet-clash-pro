@@ -42,3 +42,33 @@ function setBackgroundColorById(elementId) {
   const element = document.getElementById(elementId);
   element.classList.add('bg-orange-400');
 }
+
+function removeBackgroundColorById(elementId) {
+  const element = document.getElementById(elementId);
+  element.classList.remove('bg-orange-400');
+}
+
+
+// get the expected to press  
+function handleKeyboardButtonUpEvent(event) {
+  const playerPressed = event.key;
+  console.log('player Pressed', playerPressed);
+  
+  const currentAlphabetElement = document.getElementById('current-alphabet');
+  const currentAlphabet = currentAlphabetElement.innerText;
+  const expectedAlphabet = currentAlphabet.toLowerCase();
+  console.log(playerPressed, expectedAlphabet); 
+
+  // check matched or not 
+  if(playerPressed === expectedAlphabet){
+    console.log('You get a point.');
+    removeBackgroundColorById(expectedAlphabet);
+    console.log('You have a press currently', expectedAlphabet);
+    continueGame();
+  }
+  else{
+    console.log('You missed. You loss a life.');
+  }
+  
+}
+document.addEventListener('keyup', handleKeyboardButtonUpEvent);
